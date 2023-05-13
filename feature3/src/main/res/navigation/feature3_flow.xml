@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/feature3Flow"
+    app:startDestination="@id/feature3Fragment">
+
+    <fragment
+        android:id="@+id/feature3Fragment"
+        android:name="ai.doubletapp.sample.navigation.feature3.Feature3Fragment"
+        android:label="Feature3Fragment"
+        tools:layout="@layout/fragment_feature3">
+        <argument
+            android:name="args"
+            app:argType="ai.doubletapp.sample.navigation.feature3.navigation.Feature3Args" />
+    </fragment>
+
+</navigation>

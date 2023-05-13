@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/feature1Flow"
+    app:startDestination="@id/feature1Fragment">
+
+    <fragment
+        android:id="@+id/feature1Fragment"
+        android:name="ai.doubletapp.sample.navigation.feature1.Feature1Fragment"
+        android:label="Feature1Fragment"
+        tools:layout="@layout/fragment_feature1">
+
+<!--        You can add action for internal navigation here if your flow has 2 and more screen -->
+
+    </fragment>
+
+</navigation>

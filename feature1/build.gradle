@@ -2,6 +2,7 @@ plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
@@ -31,6 +32,8 @@ android {
 }
 
 dependencies {
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
     def daggerVersion = "2.44"
 
     implementation("androidx.core:core-ktx:1.9.0")
@@ -40,5 +43,9 @@ dependencies {
     kapt("com.google.dagger:dagger-compiler:$daggerVersion")
 
     implementation project(":di")
-    implementation project(":navigationapi")
+//    implementation project(":navigationapi")
+
+
+    implementation project(":feature1:api")
+    implementation project(":feature2:api")
 }

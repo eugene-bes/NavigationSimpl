@@ -1,27 +1,27 @@
 package ai.doubletapp.sample.navigation.feature3
 
+import ai.doubletapp.sample.navigation.feature1.api.navigation.Feature1Router
+import ai.doubletapp.sample.navigation.feature3.api.navigation.Feature3Router
 import ai.doubletapp.sample.navigation.feature3.databinding.FragmentFeature3Binding
 import ai.doubletapp.sample.navigation.feature3.di.Feature3ComponentHolder
-import ai.doubletapp.sample.navigation.feature3.navigation.Feature3Args
-import ai.doubletapp.sample.navigation.feature3.navigation.Feature3Directions
-import ai.doubletapp.sample.navigation.navigationapi.NavigationApi
 import android.content.Context
 import android.os.Bundle
-import android.os.Parcelable
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import javax.inject.Inject
 
 class Feature3Fragment : Fragment() {
 
     private lateinit var binding: FragmentFeature3Binding
 
-    private val args by getArgs<Feature3Args>()
+    private val args by navArgs<Feature3FragmentArgs>()
 
     @Inject
-    lateinit var navigationApi: NavigationApi<Feature3Directions>
+    lateinit var feature1Router: Feature1Router
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,33 +48,17 @@ class Feature3Fragment : Fragment() {
     }
 
     private fun setArgs() {
-        binding.args.text = getString(R.string.feature3_args, args.value)
+        binding.args.text = getString(R.string.feature3_args, args.args.value)
     }
 
     private fun setClickListeners() {
         binding.run {
             buttonToFeature1.setOnClickListener {
-                navigationApi.navigate(Feature3Directions.ToFeature1)
+                findNavController().popBackStack(destinationId = feature1Router.feature1().actionId, inclusive = true)
             }
             buttonBack.setOnClickListener {
-                navigationApi.navigate(Feature3Directions.Up)
+                findNavController().navigateUp()
             }
-        }
-    }
-
-    companion object {
-        private const val ARGS_KEY = "args"
-
-        private val noArgsException: IllegalArgumentException
-            get() = IllegalArgumentException("No args provided")
-
-        private val invalidArgsException: IllegalArgumentException
-            get() = IllegalArgumentException("Invalid args")
-
-        private fun <ARGS : Parcelable> Fragment.getArgs(): Lazy<ARGS> = lazy {
-            (arguments?.takeIf { args -> !args.isEmpty } ?: throw noArgsException)
-                .getParcelable<ARGS>(ARGS_KEY)
-                ?: throw invalidArgsException
         }
     }
 }

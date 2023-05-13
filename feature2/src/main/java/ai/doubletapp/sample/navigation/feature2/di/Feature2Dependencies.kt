@@ -1,10 +1,8 @@
 package ai.doubletapp.sample.navigation.feature2.di
 
 import ai.doubletapp.sample.navigation.di.BaseDependencies
-import ai.doubletapp.sample.navigation.feature2.navigation.Feature2Directions
-import ai.doubletapp.sample.navigation.navigationapi.NavigationApi
+import ai.doubletapp.sample.navigation.feature3.api.navigation.Feature3Router
 
 interface Feature2Dependencies : BaseDependencies {
-
-    val navigationApi: NavigationApi<Feature2Directions>
+    fun depen3(): Feature3Router
 }

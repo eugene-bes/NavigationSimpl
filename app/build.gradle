@@ -30,6 +30,9 @@ android {
 }
 
 dependencies {
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
+
     def daggerVersion = "2.44"
 
     implementation("androidx.core:core-ktx:1.9.0")
@@ -40,8 +43,11 @@ dependencies {
     kapt("com.google.dagger:dagger-compiler:$daggerVersion")
 
     implementation project(":di")
-    implementation project(":navigationimpl")
+//    implementation project(":navigationimpl")
     implementation project(":feature1")
+    implementation project(":feature1:api")
     implementation project(":feature2")
+    implementation project(":feature2:api")
     implementation project(":feature3")
+    implementation project(":feature3:api")
 }

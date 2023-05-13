@@ -2,15 +2,15 @@ package ai.doubletapp.sample.navigation.feature2
 
 import ai.doubletapp.sample.navigation.feature2.databinding.FragmentFeature2Binding
 import ai.doubletapp.sample.navigation.feature2.di.Feature2ComponentHolder
-import ai.doubletapp.sample.navigation.feature2.navigation.Feature2Directions
 import ai.doubletapp.sample.navigation.feature2.navigation.Feature2To3Args
-import ai.doubletapp.sample.navigation.navigationapi.NavigationApi
+import ai.doubletapp.sample.navigation.feature3.api.navigation.Feature3Router
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import javax.inject.Inject
 
 class Feature2Fragment : Fragment() {
@@ -18,7 +18,7 @@ class Feature2Fragment : Fragment() {
     private lateinit var binding: FragmentFeature2Binding
 
     @Inject
-    lateinit var navigationApi: NavigationApi<Feature2Directions>
+    lateinit var feature3Router: Feature3Router
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,10 +46,12 @@ class Feature2Fragment : Fragment() {
     private fun setClickListeners() {
         binding.run {
             buttonToFeature3.setOnClickListener {
-                navigationApi.navigate(Feature2Directions.ToFeature3(getFeature2To3Args()))
+                findNavController().navigate(
+                    feature3Router.feature3(someArg1 = 2, someArg2 = "Previous Feature Number")
+                )
             }
             buttonBack.setOnClickListener {
-                navigationApi.navigate(Feature2Directions.Up)
+                findNavController().navigateUp()
             }
         }
     }
